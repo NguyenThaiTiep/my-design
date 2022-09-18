@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { FooterLogo } from "../components";
+import { Flex, FooterLogo } from "../components";
 import { styled } from "../configs";
 
 import facebookIcon from "../assets/facebook.png";
@@ -29,70 +29,38 @@ const FooterWraper = styled("div", {
   px: 100,
 });
 
-const Flex = styled("div", {
-  display: "flex",
-  variants: {
-    jusity: {
-      center: {
-        justifyContent: "center",
-      },
-      between: {
-        justifyContent: "space-between",
-      },
-      end: {
-        justifyContent: "flex-end",
-      },
-    },
-    align: {
-      center: {
-        alignItems: "center",
-      },
-      end: {
-        alignItems: "flex-end",
-      },
-    },
-  },
-});
-
 const Logo = styled(FooterLogo, {
   minWidth: 100,
   marginRight: 20,
 });
 
-const ContactContent = styled(Flex, {
-  flexGrow: 1,
-});
-const Content = styled("div", {
-  display: "flex",
-  alignItems: "end",
-});
-
 const Footer = () => {
   return (
     <FooterWraper>
-      <Content>
-        <Col md={2}>
+      <Flex align="end" wrap="wrap">
+        <Col md={2} xs={12}>
           <Logo />
         </Col>
-
-        <ContactContent>
-          <Col md={8}>
-            <Flex css={{ gap: 10 }}>
-              <div>
-                <div>(+84)917273737</div>
-                <div>18B Hoang Quoc Viet, Cau Giay, Viet Nam </div>
-              </div>
-              <div>
-                <div>info@mydesign.com </div>
-                <div>www.mydesign.com </div>
-              </div>
-            </Flex>
-          </Col>
-          <Col md={4}>
-            <Socials />
-          </Col>
-        </ContactContent>
-      </Content>
+        <Col md={10} xs={12}>
+          <Flex css={{ flexGrow: 1 }} wrap="wrap">
+            <Col md={8} xs={12}>
+              <Flex gap="s8" wrap="wrap">
+                <div>
+                  <div>(+84)917273737</div>
+                  <div>18B Hoang Quoc Viet, Cau Giay, Viet Nam </div>
+                </div>
+                <div>
+                  <div>info@mydesign.com </div>
+                  <div>www.mydesign.com </div>
+                </div>
+              </Flex>
+            </Col>
+            <Col md={4} xs={12}>
+              <Socials />
+            </Col>
+          </Flex>
+        </Col>
+      </Flex>
     </FooterWraper>
   );
 };

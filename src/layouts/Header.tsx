@@ -1,21 +1,13 @@
 import React from "react";
-import { Container, NavLink, Row } from "react-bootstrap";
-import { AppLogo } from "../components";
+import { NavLink, Row } from "react-bootstrap";
+import { AppLogo, Box, Flex, Container } from "../components";
 import { styled } from "../configs";
 
-const WrapHeader = styled("div", {
+const WrapHeader = styled(Flex, {
   height: 80,
-  py: 10,
-  px: 100,
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
 });
 
-const ListNavItem = styled("div", {
-  display: "flex",
-  columnGap: 25,
-});
+const ListNavItem = styled(Flex, {});
 
 const NavItem = styled("a", {
   all: "unset",
@@ -53,16 +45,27 @@ export const sections = [
     id: "contact",
   },
 ];
-
 const Header = () => {
   return (
-    <WrapHeader>
-      <AppLogo />
-      <ListNavItem>
-        {sections.map(({ name, id }) => (
-          <NavItem key={id}>{name}</NavItem>
-        ))}
-      </ListNavItem>
+    <WrapHeader py="s8">
+      <Container fluid>
+        <Flex align="center" jusity="between" wrap="wrap" block>
+          <Box>
+            <AppLogo />
+          </Box>
+          <ListNavItem
+            gapX={{ "@md": "s24", "@xs": "s8" }}
+            block={{
+              "@xs": true,
+              "@md": false,
+            }}
+          >
+            {sections.map(({ name, id }) => (
+              <NavItem key={id}>{name}</NavItem>
+            ))}
+          </ListNavItem>
+        </Flex>
+      </Container>
     </WrapHeader>
   );
 };

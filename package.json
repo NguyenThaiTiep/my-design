@@ -1,26 +1,30 @@
 {
-  "name": "vite-project",
+  "name": "my-design",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "homepage": "https://nguyenthaitiep.github.io/my-design",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
-    "@types/aos": "^3.0.4",
     "aos": "^2.3.4",
     "bootstrap": "^5.2.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.35.0"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
+    "gh-pages": "^4.0.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0"
   }
