@@ -11,7 +11,14 @@ const Title = styled(Text, {
 
 export const ContactUs = () => {
   return (
-    <Container pt="s16" py="s64">
+    <Container
+      id="contact"
+      pt="s16"
+      py="s64"
+      data-aos="fade-up"
+      data-aos-easing="ease-in-out"
+      data-aos-duration="2000"
+    >
       <Box py="s32" css={{ textAlign: "center" }}>
         <Title>お問い合わせ</Title>
       </Box>

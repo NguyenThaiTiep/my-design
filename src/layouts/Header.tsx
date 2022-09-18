@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Row } from "react-bootstrap";
 import { AppLogo, Box, Flex, Container } from "../components";
 import { styled } from "../configs";
+import { scrollIntoView } from "../utils/scroll";
 
 const WrapHeader = styled(Flex, {
   height: 80,
@@ -49,19 +50,27 @@ const Header = () => {
   return (
     <WrapHeader py="s8">
       <Container fluid>
-        <Flex align="center" jusity="between" wrap="wrap" block>
-          <Box>
+        <Flex align="center" jusity="between" wrap="wrap" block gapY="s16">
+          <Box mx={{ "@initial": "auto", "@lg": "s0" }}>
             <AppLogo />
           </Box>
           <ListNavItem
-            gapX={{ "@md": "s24", "@xs": "s8" }}
+            mx={{ "@initial": "auto", "@xl": "s0" }}
+            gapX="s24"
             block={{
               "@xs": true,
               "@md": false,
             }}
           >
             {sections.map(({ name, id }) => (
-              <NavItem key={id}>{name}</NavItem>
+              <NavItem
+                key={id}
+                onClick={() => {
+                  scrollIntoView(id);
+                }}
+              >
+                {name}
+              </NavItem>
             ))}
           </ListNavItem>
         </Flex>

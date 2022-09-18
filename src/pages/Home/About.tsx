@@ -21,8 +21,15 @@ const Title = styled(Text, {
   fontWeight: "bold",
   color: "black",
   lineHeight: "30px",
-  marginBottom: "$s4",
+  marginBottom: "$s16",
   display: "inline-block",
+  variants: {
+    border: {
+      true: {
+        borderBottom: "3px solid $textColor",
+      },
+    },
+  },
 });
 
 const Subtitle = styled(Text, {
@@ -39,9 +46,14 @@ const Center = styled(Box, {
 
 const FlowBox = styled(Box, {
   display: "flex",
+  minWidth: "50%",
   flexDirection: "column",
   height: "100%",
   py: "$s16",
+  px: "$s16",
+  "@lg": {
+    px: "$s48",
+  },
   variants: {
     bgc: {
       primary: {
@@ -69,14 +81,16 @@ const ConvarationWrapper = styled(Box, {
 });
 
 const Square = styled(Box, {
-  aspectRatio: "1/1",
+  aspectRatio: "4/3",
   display: "inline-flex",
   alignItems: "center",
   width: "100%",
+  justifyContent: "center",
+  py: "$s16",
 });
 const FlowImageWrapper = styled(Box, {
   width: "100%",
-  border: "5px solid $white",
+  border: "9px solid $textColor",
   borderRadius: 40,
   py: "$s24",
   px: "$s16",
@@ -96,7 +110,7 @@ const Divider = styled(
     return (
       <Flex wrap="wrap" {...props}>
         <Col md={6} xs={12}>
-          <FlowBox bgc="primary">
+          <FlowBox bgc="primary" px="s0">
             <Flex gap="s48" jusity="end" align="center">
               <Box className="dot" />
               <Box className="dot" />
@@ -105,7 +119,7 @@ const Divider = styled(
           </FlowBox>
         </Col>
         <Col md={6} xs={12}>
-          <FlowBox bgc="secodary">
+          <FlowBox bgc="secodary" px="s0">
             <Flex gap="s48" jusity="start" align="center">
               <Box className="divider left" />
               <Box className="dot" />
@@ -140,8 +154,8 @@ const Divider = styled(
 
 const WorkFlow = () => {
   return (
-    <Box px="s48">
-      <Center css={{ height: 40 }}>
+    <Box>
+      <Center css={{ height: 60 }}>
         <Title>客様の要望に応じて</Title>
         <Box>
           <Text
@@ -161,7 +175,7 @@ const WorkFlow = () => {
           <Image src={workflowImage} width="100%" />
         </FlowImageWrapper>
       </Square>
-      <Box px="s24">
+      <Box px={{ "@xl": "s24" }}>
         <Subtitle>MY Design を選ぶ理由:</Subtitle>
         <Box>
           <Flex>
@@ -203,14 +217,16 @@ const WorkFlow = () => {
 
 const TeamFlow = () => {
   return (
-    <Box px="s48">
-      <Center css={{ height: 40 }}>
-        <Title>人材サービス</Title>
+    <Box>
+      <Center css={{ height: 60 }}>
+        <Title border>人材サービス</Title>
       </Center>
       <Square>
-        <FlowImageWrapper css={{ px: "10%" }}>
-          <Image src={teamflowImage} width="100%" />
-        </FlowImageWrapper>
+        <Box css={{ width: "70%", minWidth: 400 }}>
+          <FlowImageWrapper css={{ px: "$s48" }}>
+            <Image src={teamflowImage} />
+          </FlowImageWrapper>
+        </Box>
       </Square>
       <Box>
         <Subtitle>MY Design の人材サービスが選ばれる理由:</Subtitle>
@@ -279,7 +295,6 @@ const RequestFlow = styled(
     );
   },
   {
-    px: "$s72",
     ".request-flow": {
       gridTemplateAreas: `"step step1 step1 step1 step1" "step step2 step2 step2 step2" "step step3 step3 step3 step3" "step step4 step4 step4 step4" "step step5 step5 step5 step5"
       `,
@@ -339,51 +354,58 @@ const DesignStep = styled(
   }
 );
 
-const DesignProcessFlow = styled(
-  ({ ...props }) => {
-    return (
-      <Box {...props}>
-        <Subtitle>MY Design と協力プロセス:</Subtitle>
-        <Grid column={{ "@xs": 1, "@sm": 2, "@lg": 3 }} gap="s64">
-          <DesignStep
-            index="01"
-            title="問い合わせ"
-            description="まずはお問い合わせください。お電話とメールからのお問い合わせを承っております。"
-          />
-          <DesignStep
-            index="02"
-            title="ヒアリング"
-            description="貴社のご要望と目標を正確に理解するためにヒアリングを行い、人材をご用意します。"
-          />
-          <DesignStep
-            index="03"
-            title="提案"
-            description="御社のご要望に応じて適切なスキルを持った優秀なデザイナをご提案します。"
-          />
-          <DesignStep
-            index="04"
-            title="選択"
-            description="御社はMYDesignの提案に基づいてデザイナーを選択します。"
-          />
+const DesignProcessFlow = styled(({ ...props }) => {
+  return (
+    <Box {...props}>
+      <Subtitle>MY Design と協力プロセス:</Subtitle>
+      <Grid column={{ "@xs": 1, "@sm": 2, "@xxl": 3 }} gap="s64">
+        <DesignStep
+          index="01"
+          title="問い合わせ"
+          description="まずはお問い合わせください。お電話とメールからのお問い合わせを承っております。"
+        />
+        <DesignStep
+          index="02"
+          title="ヒアリング"
+          description="貴社のご要望と目標を正確に理解するためにヒアリングを行い、人材をご用意します。"
+        />
+        <DesignStep
+          index="03"
+          title="提案"
+          description="御社のご要望に応じて適切なスキルを持った優秀なデザイナをご提案します。"
+        />
+        <DesignStep
+          index="04"
+          title="選択"
+          description="御社はMYDesignの提案に基づいてデザイナーを選択します。"
+        />
 
-          <DesignStep
-            index="05"
-            title="ご契約"
-            description="契約を締結します。"
-          />
-          <DesignStep index="06" title="デザイナき スタート。" />
-        </Grid>
-      </Box>
-    );
+        <DesignStep
+          index="05"
+          title="ご契約"
+          description="契約を締結します。"
+        />
+        <DesignStep index="06" title="デザイナき スタート。" />
+      </Grid>
+    </Box>
+  );
+});
+
+const FlowWrapper = styled(Grid, {
+  gridTemplateAreas: `
+  "workFlow"  "requestFlow" "teamFlow" "designFlow"`,
+  ".divider": { display: "none" },
+
+  "@xxl": {
+    gridTemplateAreas: `
+  "workFlow teamFlow" "divider divider" "requestFlow designFlow"`,
+    ".divider": { display: "flex" },
   },
-  {
-    mx: "$s72",
-  }
-);
+});
 
 export const About = () => {
   return (
-    <Box py="s48">
+    <Box py="s48" id="service">
       <Container center>
         <Center>
           <Box>
@@ -396,7 +418,13 @@ export const About = () => {
         </Box>
 
         <Box>
-          <Image src={imageAbout} width="100%" />
+          <Image
+            src={imageAbout}
+            width="100%"
+            data-aos="fade-right"
+            data-aos-easing="ease-in-out"
+            data-aos-duration="4000"
+          />
         </Box>
       </Container>
       <Container mt="s24" pb="s48">
@@ -423,31 +451,25 @@ export const About = () => {
           </ConvarationWrapper>
         </Flex>
       </Container>
-      <Flex wrap="wrap">
-        <Col md={6} xs={12}>
-          <FlowBox bgc="primary">
-            <WorkFlow />
-          </FlowBox>
-        </Col>
-        <Col md={6} xs={12}>
-          <FlowBox bgc="secodary">
-            <TeamFlow />
-          </FlowBox>
-        </Col>
-      </Flex>
-      <Divider />
-      <Flex wrap="wrap">
-        <Col md={6} xs={12}>
-          <FlowBox bgc="primary">
-            <RequestFlow />
-          </FlowBox>
-        </Col>
-        <Col md={6} xs={12}>
-          <FlowBox bgc="secodary">
-            <DesignProcessFlow />
-          </FlowBox>
-        </Col>
-      </Flex>
+      <FlowWrapper>
+        <FlowBox bgc="primary" css={{ gridArea: "workFlow" }}>
+          <WorkFlow />
+        </FlowBox>
+
+        <FlowBox bgc="secodary" css={{ gridArea: "teamFlow" }}>
+          <TeamFlow />
+        </FlowBox>
+
+        <Divider css={{ gridArea: "divider" }} className="divider" />
+
+        <FlowBox bgc="primary" css={{ gridArea: "requestFlow" }}>
+          <RequestFlow />
+        </FlowBox>
+
+        <FlowBox bgc="secodary" css={{ gridArea: "designFlow" }}>
+          <DesignProcessFlow />
+        </FlowBox>
+      </FlowWrapper>
     </Box>
   );
 };

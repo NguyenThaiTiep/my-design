@@ -32,6 +32,7 @@ const { styled, globalCss, config, css, theme } = createStitches({
       s80: "5rem",
       s96: "6rem",
       s100: 100,
+      auto: "auto",
     },
     sizes: {},
     fontWeights: {
@@ -52,8 +53,8 @@ const { styled, globalCss, config, css, theme } = createStitches({
     sm: "(min-width: 576px)",
     md: "(min-width: 768px)",
     lg: "(min-width: 992px)",
-    xl: "(min-width: 1200px)",
-    xxl: "(min-width: 1400px)",
+    xl: "(min-width: 1024px)",
+    xxl: "(min-width: 1440px)",
   },
   utils: {
     px: (value: any) => ({

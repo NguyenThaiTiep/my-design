@@ -45,18 +45,26 @@ const Service = () => {
     <Container py="s32">
       <Title>私たちに関するデータ</Title>
       <Box my="s48">
-        <Flex align="end" gap="s32">
-          <Box css={{ flexGrow: 1, minWidth: "70%" }}>
+        <Flex
+          align="end"
+          gap="s32"
+          wrap={{ "@initial": "wrap", "@xxl": "nowrap" }}
+        >
+          <Box css={{ flexGrow: 1, minWidth: "70%", "@md": {}, "@lg": {} }}>
             <Image src={aboutImage} />
           </Box>
 
-          <Paragraph align="justify" mb="s0" css={{ fontSize: 24 }}>
+          <Paragraph
+            align="justify"
+            mb="s0"
+            css={{ fontSize: 24, minWidth: 310 }}
+          >
             MY Design
             はお客様の最初のドラフトで無料のデザインサービスを提供します!
           </Paragraph>
         </Flex>
       </Box>
-      <Grid column={{ "@xs": 1, "@sm": 2, "@md": 4 }}>
+      <Grid column={{ "@xs": 1, "@sm": 2, "@xxl": 4 }} gap="s24">
         <AboutIcon icon={aboutIcon1} title="10+ デザイナー" />
         <AboutIcon icon={aboutIcon2} title="95% 日本の顧客" />
         <AboutIcon icon={aboutIcon3} title="3 言語" />

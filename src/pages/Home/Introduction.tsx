@@ -31,18 +31,22 @@ const Introduction = () => {
   return (
     <Box backgroundColor="white" py="s20">
       <Container center py="s24">
-        <Flex py="s20" block wrap="wrap">
-          <Col md={5} xs={12}>
+        <Flex py="s20" block wrap="wrap" gapY="s24">
+          <Col xl={5} md={6} xs={12}>
             <Image src={introductImage} width="100%" />
           </Col>
-          <Col md={7} xs={12}>
+          <Col xl={7} xs={12} md={6}>
             <Flex
               direction="column"
-              css={{ height: "100%", paddingLeft: "$s64" }}
-              gap="s24"
+              css={{ height: "100%" }}
+              gap={{ "@initial": "s8", "@xl": "s24" }}
               jusity="start"
+              pl={{ "@sm": "s4", "@md": "s24", "@xxl": "s64" }}
+              data-aos="fade-up"
+              data-aos-easing="ease-in-out"
+              data-aos-duration="1000"
             >
-              <Parapgraph>
+              <Parapgraph align="justify">
                 MY Designは英語で「Me＆You
                 Design」という意味です。製品の価値は私たちとお客様の間のコネクトから生まれると信じています。
               </Parapgraph>

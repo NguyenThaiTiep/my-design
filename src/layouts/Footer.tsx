@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { Flex, FooterLogo } from "../components";
+import { Container, Flex, FooterLogo } from "../components";
 import { styled } from "../configs";
 
 import facebookIcon from "../assets/facebook.png";
@@ -25,42 +25,42 @@ const socials = [
 
 const FooterWraper = styled("div", {
   backgroundColor: "$secondary",
-  padding: 10,
-  px: 100,
+  py: "$s32",
 });
 
 const Logo = styled(FooterLogo, {
   minWidth: 100,
-  marginRight: 20,
 });
 
 const Footer = () => {
   return (
     <FooterWraper>
-      <Flex align="end" wrap="wrap">
-        <Col md={2} xs={12}>
-          <Logo />
-        </Col>
-        <Col md={10} xs={12}>
-          <Flex css={{ flexGrow: 1 }} wrap="wrap">
-            <Col md={8} xs={12}>
-              <Flex gap="s8" wrap="wrap">
-                <div>
-                  <div>(+84)917273737</div>
-                  <div>18B Hoang Quoc Viet, Cau Giay, Viet Nam </div>
-                </div>
-                <div>
-                  <div>info@mydesign.com </div>
-                  <div>www.mydesign.com </div>
-                </div>
-              </Flex>
-            </Col>
-            <Col md={4} xs={12}>
-              <Socials />
-            </Col>
-          </Flex>
-        </Col>
-      </Flex>
+      <Container fluid py="s8">
+        <Flex align="end" wrap="wrap" gapY="s16">
+          <Col xxl={2} md={3} xs={12} style={{ textAlign: "center" }}>
+            <Logo />
+          </Col>
+          <Col xxl={10} md={9} xs={12}>
+            <Flex css={{ flexGrow: 1 }} wrap="wrap" px="s16">
+              <Col md={8} xs={12}>
+                <Flex gapX="s32" gapY="s16" wrap="wrap">
+                  <div>
+                    <div>(+84)917273737</div>
+                    <div>18B Hoang Quoc Viet, Cau Giay, Viet Nam </div>
+                  </div>
+                  <div>
+                    <div>info@mydesign.com </div>
+                    <div>www.mydesign.com </div>
+                  </div>
+                </Flex>
+              </Col>
+              <Col md={4} xs={12}>
+                <Socials />
+              </Col>
+            </Flex>
+          </Col>
+        </Flex>
+      </Container>
     </FooterWraper>
   );
 };

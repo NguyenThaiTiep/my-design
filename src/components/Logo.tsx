@@ -11,5 +11,5 @@ export const AppLogo = ({ ...props }) => (
   <StyledLogo src={logoHeader} {...props} />
 );
 export const FooterLogo = ({ ...props }) => (
-  <StyledLogo {...props} src={logoFooter} width={100} />
+  <StyledLogo {...props} src={logoFooter} width={150} />
 );
