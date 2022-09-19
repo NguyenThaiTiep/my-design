@@ -222,7 +222,7 @@ const TeamFlow = () => {
         <Title border>人材サービス</Title>
       </Center>
       <Square>
-        <Box css={{ width: "70%", minWidth: 400 }}>
+        <Box css={{ "@lg": { width: "70%", minWidth: 400 } }}>
           <FlowImageWrapper css={{ px: "$s48" }}>
             <Image src={teamflowImage} />
           </FlowImageWrapper>
@@ -396,7 +396,7 @@ const FlowWrapper = styled(Grid, {
   "workFlow"  "requestFlow" "teamFlow" "designFlow"`,
   ".divider": { display: "none" },
 
-  "@xxl": {
+  "@media(min-width: 1025px)": {
     gridTemplateAreas: `
   "workFlow teamFlow" "divider divider" "requestFlow designFlow"`,
     ".divider": { display: "flex" },

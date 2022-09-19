@@ -1,16 +1,18 @@
-import React, { HTMLInputTypeAttribute } from "react";
+import React, { HTMLInputTypeAttribute, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button, Form } from "react-bootstrap";
 import { useForm, UseFormRegister, Validate } from "react-hook-form";
 import { styled } from "../configs";
 import { Box } from "./Box";
 import { Flex } from "./Flex";
+import toast, { Toaster } from "react-hot-toast";
 
 interface ContactFormFields {
   name: string;
   email: string;
-  phoneNumber: string;
+  phonenumber: string;
   content: string;
-  companyName?: string;
+  company?: string;
 }
 
 const FormLabel = styled("label", {
@@ -70,17 +72,8 @@ const FormGroup = React.forwardRef<HTMLInputElement, FromGroupProps>(
         wrap={{ "@initial": "wrap", "@lg": "nowrap" }}
         block
       >
-        <FormLabel htmlFor={field} error={!!error}>
-          {label}
-        </FormLabel>
-        <FormInput
-          ref={ref}
-          id={field}
-          name={field}
-          type={type}
-          error={!!error}
-          {...props}
-        />
+        <FormLabel htmlFor={field}>{label}</FormLabel>
+        <FormInput ref={ref} id={field} name={field} type={type} {...props} />
       </Flex>
     );
   }
@@ -115,6 +108,7 @@ const FormContactWrapper = styled(Box, {
 });
 
 export const ContactForm = () => {
+  const [sent, setSend] = useState(false);
   const {
     handleSubmit,
     register,
@@ -123,65 +117,91 @@ export const ContactForm = () => {
     defaultValues: {
       name: "",
       email: "",
-      companyName: "",
-      phoneNumber: "",
+      company: "",
+      phonenumber: "",
       content: "",
     },
   });
 
-  const onSubmit = (value: ContactFormFields) => {};
+  const onSubmit = (value: ContactFormFields) => {
+    const sendEmail = () => {
+      return emailjs
+        .send(
+          "service_tl1s0ul",
+          "template_t184q68",
+          { ...value },
+          "P_8ChotbXo0LYjaW2"
+        )
+        .then(() => {
+          setSend(true);
+        });
+    };
+    if (sent) {
+      return toast.error("No permission");
+    } else {
+      toast.promise(sendEmail(), {
+        loading: "Sending message",
+        success: "Sent",
+        error: "Fail",
+      });
+    }
+  };
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormContactWrapper px={{ "@xl": "s48", "@initial": "s16" }}>
-        <Flex
-          direction="column"
-          gapY="s16"
-          gapX={{ "@initial": "s8", "@xl": "s16" }}
-        >
-          <FormGroup
-            label="お名前｜Your Name"
-            field="name"
-            type="text"
-            {...register("name", { required: "This field is required." })}
-            error={errors.name?.message}
-          />
-          <FormGroup
-            type="text"
-            label="会社名 | Company Name"
-            field="companyName"
-            {...register("companyName", {
-              required: "This field is required.",
-            })}
-            error={errors.companyName?.message}
-          />
-          <FormGroup
-            type="email"
-            label="メールアドレス｜Your E-mail"
-            field="email"
-            {...register("email", { required: "This field is required." })}
-            error={errors.email?.message}
-          />
-          <FormGroup
-            type="text"
-            label="電話番号｜Your Phone Number"
-            field="phoneNumber"
-            {...register("phoneNumber", {
-              required: "This field is required.",
-            })}
-            error={errors.phoneNumber?.message}
-          />
-          <FormGroup
-            type="text"
-            label="お問合わせ｜Your Contents"
-            field="content"
-            {...register("content", { required: "This field is required." })}
-            error={errors.content?.message}
-          />
+    <>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <FormContactWrapper px={{ "@xl": "s48", "@initial": "s16" }}>
+          <Flex
+            direction="column"
+            gapY="s16"
+            gapX={{ "@initial": "s8", "@xl": "s16" }}
+          >
+            <FormGroup
+              label="お名前｜Your Name"
+              field="name"
+              type="text"
+              {...register("name", { required: "This field is required." })}
+              error={errors.name?.message}
+            />
+            <FormGroup
+              type="text"
+              label="会社名 | Company Name"
+              field="company"
+              {...register("company", {
+                required: "This field is required.",
+              })}
+              error={errors.company?.message}
+            />
+            <FormGroup
+              type="email"
+              label="メールアドレス｜Your E-mail"
+              field="email"
+              {...register("email", { required: "This field is required." })}
+              error={errors.email?.message}
+            />
+            <FormGroup
+              type="text"
+              label="電話番号｜Your Phone Number"
+              field="phonenumber"
+              {...register("phonenumber", {
+                required: "This field is required.",
+              })}
+              error={errors.phonenumber?.message}
+            />
+            <FormGroup
+              type="text"
+              label="お問合わせ｜Your Contents"
+              field="content"
+              {...register("content", { required: "This field is required." })}
+              error={errors.content?.message}
+            />
+          </Flex>
+        </FormContactWrapper>
+        <Flex mt="s32" jusity="center">
+          <SubmitButton type="submit" disabled={sent}>
+            Send Us
+          </SubmitButton>
         </Flex>
-      </FormContactWrapper>
-      <Flex mt="s32" jusity="center">
-        <SubmitButton type="submit">Send Us</SubmitButton>
-      </Flex>
-    </Form>
+      </Form>
+    </>
   );
 };

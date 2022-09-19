@@ -56,7 +56,7 @@ const Header = () => {
           </Box>
           <ListNavItem
             mx={{ "@initial": "auto", "@xl": "s0" }}
-            gapX="s24"
+            gapX={{ "@initial": "s8", "@lg": "s24" }}
             block={{
               "@xs": true,
               "@md": false,

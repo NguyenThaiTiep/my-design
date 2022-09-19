@@ -6,7 +6,7 @@ import reference2 from "../../assets/reference-2.png";
 import reference3 from "../../assets/reference-3.png";
 
 import story1 from "../../assets/story-1.png";
-import story2 from "../../assets/story-2.png";
+import story2 from "../../assets/story-2.jpg";
 import story3 from "../../assets/story-3.png";
 import story4 from "../../assets/story-4.png";
 
@@ -31,7 +31,7 @@ const ImageWrapper = styled(Box, {});
 const StoryImageWrapper = styled(Box, {
   py: "$s16",
   display: "grid",
-  gridTemplateAreas: `"img1" "img2" "img3" "img4"`,
+  gridTemplateAreas: `"img1" "img2" "img4" "img3"`,
   "@lg": {
     gridTemplateAreas: `"img1 img2" "img3 img4"`,
   },
@@ -95,7 +95,7 @@ const Reference = () => {
             </Grid>
           </Container>
         </GridWrapper>
-        <Container center>
+        <Container center mt="s24">
           <StoryImageWrapper pb="s48" px={{ "@initial": "s0", "@xl": "s32" }}>
             <ImageWrapper
               css={{
@@ -103,7 +103,7 @@ const Reference = () => {
                 paddingTop: "10%",
                 textAlign: "right",
               }}
-              pr={{ "@initial": "s0", "@xl": "s32" }}
+              px={{ "@initial": "s0", "@xl": "s32" }}
               data-aos="fade-right"
               data-aos-easing="ease-in-out"
               data-aos-duration="2000"
@@ -112,12 +112,12 @@ const Reference = () => {
             </ImageWrapper>
             <ImageWrapper
               css={{ gridArea: "img2" }}
-              pl={{ "@initial": "s0", "@xl": "s32" }}
+              px={{ "@initial": "s0", "@xl": "s32" }}
               data-aos="fade-left"
               data-aos-easing="ease-in-out"
               data-aos-duration="2000"
             >
-              <Image src={story3} />
+              <Image src={story2} />
             </ImageWrapper>
             <ImageWrapper
               css={{ gridArea: "img3" }}
@@ -125,20 +125,20 @@ const Reference = () => {
               data-aos-easing="ease-in-out"
               data-aos-duration="2000"
             >
-              <Image src={story4} width="100%" />
+              <Image src={story3} width="100%" />
             </ImageWrapper>
             <ImageWrapper
               css={{
                 gridArea: "img4",
                 "@lg": {
-                  marginTop: "-20%",
+                  marginTop: "-15%",
                 },
               }}
               data-aos="fade-up"
               data-aos-easing="ease-in-out"
               data-aos-duration="2000"
             >
-              <Image src={story2} width="100%" />
+              <Image src={story4} width="100%" />
             </ImageWrapper>
           </StoryImageWrapper>
         </Container>

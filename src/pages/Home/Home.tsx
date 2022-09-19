@@ -8,8 +8,8 @@ import Service from "./Service";
 import WhySection from "./WhySection";
 import arrowDownImage from "../../assets/arow-down.png";
 import { styled } from "../../configs";
-import { Button } from "react-bootstrap";
 import { scrollIntoView } from "../../utils/scroll";
+
 const ScrollToTop = styled(
   ({ ...props }) => {
     const [show, setShow] = useState(window.screenY > 400);
@@ -34,18 +34,20 @@ const ScrollToTop = styled(
           onClick={() => scrollIntoView("root")}
           data-aso="fade-in"
         >
-          <Image src={arrowDownImage} />
+          <Image src={arrowDownImage} width="30" />
         </button>
       )
     );
   },
   {
     all: "unset",
-    backgroundColor: "transparent",
+    backgroundColor: "#73b6f161",
     position: "fixed",
     bottom: 20,
     right: 20,
     transform: "all 2s linear",
+    padding: "$s16",
+    borderRadius: 9999,
   }
 );
 

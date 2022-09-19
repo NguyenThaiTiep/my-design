@@ -7,11 +7,12 @@ import facebookIcon from "../assets/facebook.png";
 import instagramIcon from "../assets/instagram.png";
 import lineIcon from "../assets/line.png";
 import { Image } from "../components/Image";
+import { Toaster } from "react-hot-toast";
 
 const socials = [
   {
     icon: facebookIcon,
-    href: "",
+    href: "https://www.facebook.com/MY-Design-111581465011685",
   },
   {
     icon: instagramIcon,
@@ -61,15 +62,16 @@ const Footer = () => {
           </Col>
         </Flex>
       </Container>
+      <Toaster position="top-center" />
     </FooterWraper>
   );
 };
 
 const Socials = () => {
   return (
-    <Flex css={{ gap: 15 }} jusity="end" align="end">
-      {socials.map(({ icon }, index) => (
-        <a key={index}>
+    <Flex gap="s48" jusity="end" align="end">
+      {socials.map(({ icon, href }, index) => (
+        <a key={index} href={href} target="_blank">
           <Image src={icon} width={40} height={40} />
         </a>
       ))}
